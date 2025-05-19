@@ -1,0 +1,7 @@
+name: xFarm-tech-challenge
+description: S3 -> Lambda trigger architecture using Pulumi and Python
+runtime: python
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: aws-python
