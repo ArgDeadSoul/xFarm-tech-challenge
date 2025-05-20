@@ -48,5 +48,13 @@ $Env:AWS_REGION="us-east-1"
 
 ### 4. Deploy infraestructure
 ```
+pulumi stack init dev
 pulumi up
 ```
+
+### 5. CI/CD [Optional]
+All pushes to the main branch trigger a pipeline to deploy using pulumi, but the stack needs to be created manually as follows
+```
+pulumi stack init dev
+```
+Then the stack will deploy normally. Pipelines in `.github/workflows`
