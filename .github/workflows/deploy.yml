@@ -24,6 +24,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Select or create stack
+        run: pulumi stack select dev || pulumi stack init dev
+
+      - name: Configure AWS Region for Pulumi
+        run: pulumi config set aws:region us-east-1 --non-interactive
+
       - name: Deploy with Pulumi
         uses: pulumi/actions@v4
         with:
@@ -31,6 +37,4 @@ jobs:
           stack-name: dev
           work-dir: . 
 
-      - name: Set AWS region (if needed)
-        run: pulumi config set aws:region us-east-1 --non-interactive
-        if: success()
+      
