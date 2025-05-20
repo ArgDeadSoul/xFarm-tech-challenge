@@ -86,3 +86,6 @@ pulumi stack rm dev
 - Created a simple Github Actions pipeline to destroy infraestructure using pulumi
 - Tested pipelines and application
 - Documented process in README
+
+
+test
