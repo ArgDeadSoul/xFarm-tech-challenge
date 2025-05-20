@@ -21,8 +21,8 @@ This project sets up:
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/ArgDeadSoul/xFarm-tech-challenge.git
+cd xFarm-tech-challenge
 ```
 
 ### 2. Install Python dependencies
@@ -53,8 +53,36 @@ pulumi up
 ```
 
 ### 5. CI/CD [Optional]
-All pushes to the main branch trigger a pipeline to deploy using pulumi, but the stack needs to be created manually as follows
+All pushes to the main branch trigger a pipeline to deploy using pulumi. The default stack is `dev` for simplicity. Pipelines in `.github/workflows`
+
+### 6. Destroy infraestructure
+If triggerd manually use:
 ```
-pulumi stack init dev
+pulumi destroy
 ```
-Then the stack will deploy normally. Pipelines in `.github/workflows`
+If the CI/CD pipeline was used you can use the workflow `.github/workflows/destroy.yml`.
+
+To delete the stack use 
+```
+pulumi stack rm dev
+```
+
+
+## Deployment Process
+
+- As I never used pulumi i had to do a little research on the tool. 
+- Installed pulumi and made necessary accounts for the demo. 
+- Created a pulumi project and used AI to help me format the project fast and effectivly.
+- Created a simple python script for the lambda
+- In AWS:
+   - Created IAM role for pulumi access
+   - Created an access token for said user (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+- In pulumi:
+   - Created an access token (PULUMI_ACCESS_TOKEN)
+- This tokens will be used for the pulumi and CI/CD. Stored them as repository secrets
+- Deployed infraestructure using pulumi with no much problems
+- Tested application
+- Created a simple Github Actions pipeline to deploy infraestructure using pulumi
+- Created a simple Github Actions pipeline to destroy infraestructure using pulumi
+- Tested pipelines and application
+- Documented process in README
